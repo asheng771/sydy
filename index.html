@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瞬屿电影工作室 | 用专业记录爱情，让回忆温暖一生</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#FBF6F0',
+                            100: '#F5E9D9',
+                            200: '#E9D0B2',
+                            300: '#DAB285',
+                            400: '#C99359',
+                            500: '#B87333',
+                            600: '#9A5E28',
+                            700: '#7A4A20',
+                            800: '#5B3718',
+                            900: '#3D2410',
+                        },
+                        gold: '#D4AF37',
+                        warm: {
+                            50: '#FDFCFA',
+                            100: '#F8F5F0',
+                            200: '#F0EBE3',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif SC"', '"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['"Playfair Display"', '"Noto Serif SC"', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+            .film-grain {
+                position: relative;
+            }
+            .film-grain::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+                opacity: 0.03;
+                pointer-events: none;
+                z-index: 1;
+            }
+            .scroll-smooth {
+                scroll-behavior: smooth;
+            }
+        }
+    </style>
+</head>
+<body class="bg-warm-100 text-brand-900 font-sans antialiased scroll-smooth">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6">
+        <div class="container mx-auto px-6 lg:px-12 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="h-10 w-auto">
+                    <svg viewBox="0 0 4955 960" class="h-full w-auto fill-brand-500">
+                        <text x="0" y="700" font-family="sans-serif" font-weight="bold" font-size="600">瞬屿电影</text>
+                    </svg>
+                </div>
+                <span class="font-display text-xl font-semibold tracking-wider text-brand-800 hidden sm:block">SHUNYU FILM</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="#home" class="text-brand-800 hover:text-brand-500 transition-colors duration-300 font-medium tracking-wide">首页</a>
+                <a href="#works" class="text-brand-800 hover:text-brand-500 transition-colors duration-300 font-medium tracking-wide">作品</a>
+                <a href="#packages" class="text-brand-800 hover:text-brand-500 transition-colors duration-300 font-medium tracking-wide">套餐</a>
+                <a href="#team" class="text-brand-800 hover:text-brand-500 transition-colors duration-300 font-medium tracking-wide">团队</a>
+                <a href="#about" class="text-brand-800 hover:text-brand-500 transition-colors duration-300 font-medium tracking-wide">关于</a>
+                <a href="#contact" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-sm transition-all duration-300 font-medium tracking-wide">预约咨询</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-brand-800 text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-warm-50/95 backdrop-blur-md absolute top-full left-0 w-full border-t border-brand-100">
+            <div class="container mx-auto px-6 py-6 flex flex-col gap-5">
+                <a href="#home" class="text-brand-800 hover:text-brand-500 transition-colors py-2 font-medium">首页</a>
+                <a href="#works" class="text-brand-800 hover:text-brand-500 transition-colors py-2 font-medium">作品</a>
+                <a href="#packages" class="text-brand-800 hover:text-brand-500 transition-colors py-2 font-medium">套餐</a>
+                <a href="#team" class="text-brand-800 hover:text-brand-500 transition-colors py-2 font-medium">团队</a>
+                <a href="#about" class="text-brand-800 hover:text-brand-500 transition-colors py-2 font-medium">关于</a>
+                <a href="#contact" class="bg-brand-500 text-white px-6 py-3 rounded-sm text-center font-medium mt-2">预约咨询</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首屏 Hero -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center film-grain overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-900/60 via-brand-900/40 to-brand-900/70 z-0"></div>
+        <div class="absolute inset-0 z-[-1]">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                 alt="婚礼场景" 
+                 class="w-full h-full object-cover">
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center">
+            <p class="text-brand-200 tracking-[0.3em] uppercase text-sm mb-6 font-medium">WEDDING CINEMATOGRAPHY</p>
+            <h1 class="font-display text-[clamp(2.5rem,8vw,5rem)] font-semibold text-white leading-tight mb-8 text-balance">
+                您的婚礼<br>值得被这样记录
+            </h1>
+            <p class="text-warm-100 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                我们不只是拍照和录像，更是情感的捕捉者<br>
+                用电影的语言，定格专属于你的爱情瞬间
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#packages" class="bg-brand-500 hover:bg-brand-600 text-white px-10 py-4 rounded-sm transition-all duration-300 font-medium tracking-wide text-lg">
+                    查看套餐
+                </a>
+                <a href="#works" class="border border-white/60 hover:border-white text-white px-10 py-4 rounded-sm transition-all duration-300 font-medium tracking-wide text-lg hover:bg-white/10">
+                    欣赏作品
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 animate-bounce">
+            <i class="fa fa-angle-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- 品牌理念 -->
+    <section class="py-24 bg-warm-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="text-brand-500 tracking-[0.2em] uppercase text-sm mb-4 font-medium">OUR PHILOSOPHY</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold text-brand-800 mb-10">
+                    用专业记录爱情，让回忆温暖一生
+                </h2>
+                <p class="text-brand-700 leading-loose text-lg font-light">
+                    瞬屿电影工作室专注于高端婚礼影像创作。我们相信，每一场婚礼都是独一无二的电影，
+                    每一对新人都有属于自己的故事。我们用镜头捕捉情绪，用光影镌刻时光，
+                    让多年后的你再次回看时，依然能感受到那份心动与温暖。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-20">
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 text-brand-500">
+                        <i class="fa fa-film text-4xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-brand-800 mb-3">电影级质感</h3>
+                    <p class="text-brand-600 font-light leading-relaxed">
+                        专业电影器材拍摄，工业级后期制作标准，每一帧都如电影画面般精致
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 text-brand-500">
+                        <i class="fa fa-heart text-4xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-brand-800 mb-3">情感纪实</h3>
+                    <p class="text-brand-600 font-light leading-relaxed">
+                        不刻意摆拍，不生硬导演，真实记录婚礼当天的感动、泪水与欢笑
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 text-brand-500">
+                        <i class="fa fa-star text-4xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-brand-800 mb-3">匠心服务</h3>
+                    <p class="text-brand-600 font-light leading-relaxed">
+                        一对一专属沟通，定制化拍摄方案，全程贴心陪伴你的重要时刻
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示 -->
+    <section id="works" class="py-24 bg-brand-900 text-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-brand-300 tracking-[0.2em] uppercase text-sm mb-4 font-medium">SELECTED WORKS</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold">作品精选</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 作品卡片 1 -->
+                <div class="group relative overflow-hidden rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="婚礼作品" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <p class="text-brand-300 text-sm mb-1">微电影 · 创始人档</p>
+                        <h4 class="font-serif text-xl font-medium">《初识你名，久居我心》</h4>
+                    </div>
+                </div>
+                
+                <!-- 作品卡片 2 -->
+                <div class="group relative overflow-hidden rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="婚礼作品" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <p class="text-brand-300 text-sm mb-1">双机位 · 创作档</p>
+                        <h4 class="font-serif text-xl font-medium">《时光与你》</h4>
+                    </div>
+                </div>
+                
+                <!-- 作品卡片 3 -->
+                <div class="group relative overflow-hidden rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="婚礼作品" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <p class="text-brand-300 text-sm mb-1">精致记录档</p>
+                        <h4 class="font-serif text-xl font-medium">《秋日序章》</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border border-brand-400 text-brand-200 hover:bg-brand-400 hover:text-white px-8 py-3 rounded-sm transition-all duration-300 font-medium">
+                    查看更多作品
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务套餐 -->
+    <section id="packages" class="py-24 bg-warm-100">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-brand-500 tracking-[0.2em] uppercase text-sm mb-4 font-medium">PRICING & PACKAGES</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold text-brand-800">服务套餐</h2>
+                <p class="text-brand-600 mt-4 max-w-xl mx-auto">多种套餐选择，满足不同需求，也支持个性化定制方案</p>
+            </div>
+            
+            <!-- 摄像跟拍系列 -->
+            <div class="mb-20">
+                <h3 class="font-serif text-2xl font-semibold text-brand-800 text-center mb-10 flex items-center justify-center gap-4">
+                    <span class="h-px w-16 bg-brand-300"></span>
+                    摄像跟拍系列 · 视频
+                    <span class="h-px w-16 bg-brand-300"></span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- A 经典记录档 -->
+                    <div class="bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow duration-300 border border-brand-100 flex flex-col">
+                        <div class="p-6 border-b border-brand-100">
+                            <p class="text-brand-400 text-sm font-medium mb-2">A 套餐</p>
+                            <h4 class="font-serif text-xl font-semibold text-brand-800 mb-4">经典记录档</h4>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl font-bold text-brand-600">¥1380</span>
+                                <span class="text-brand-500 text-sm">/场</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1">
+                            <p class="text-brand-700 mb-4 font-medium">资深摄像师 1 名</p>
+                            <ul class="space-y-3 text-brand-600 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>婚礼预告 1 个（30秒）</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>婚礼全程视频 1 份</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>30-90分钟完整记录</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="#contact" class="block text-center border border-brand-500 text-brand-500 hover:bg-brand-500 hover:text-white py-3 rounded-sm transition-all duration-300 font-medium">
+                                咨询详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- B 精致记录档 -->
+                    <div class="bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow duration-300 border border-brand-100 flex flex-col">
+                        <div class="p-6 border-b border-brand-100">
+                            <p class="text-brand-400 text-sm font-medium mb-2">B 套餐</p>
+                            <h4 class="font-serif text-xl font-semibold text-brand-800 mb-4">精致记录档</h4>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl font-bold text-brand-600">¥1680</span>
+                                <span class="text-brand-500 text-sm">/场</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1">
+                            <p class="text-brand-700 mb-4 font-medium">资深摄像师 1 名</p>
+                            <ul class="space-y-3 text-brand-600 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>婚礼精华短片 1 个</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>3-5分钟精剪短片</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>婚礼全程视频 1 份</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="#contact" class="block text-center border border-brand-500 text-brand-500 hover:bg-brand-500 hover:text-white py-3 rounded-sm transition-all duration-300 font-medium">
+                                咨询详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- C 创始人创作档 -->
+                    <div class="bg-white rounded-sm shadow-md hover:shadow-lg transition-shadow duration-300 border-2 border-brand-300 flex flex-col relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-xs px-4 py-1 rounded-sm font-medium">
+                            热门推荐
+                        </div>
+                        <div class="p-6 border-b border-brand-100">
+                            <p class="text-brand-400 text-sm font-medium mb-2">C 套餐</p>
+                            <h4 class="font-serif text-xl font-semibold text-brand-800 mb-4">创始人创作档</h4>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl font-bold text-brand-600">¥1980</span>
+                                <span class="text-brand-500 text-sm">/场</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1">
+                            <p class="text-brand-700 mb-4 font-medium">创始人摄像师 1 名</p>
+                            <ul class="space-y-3 text-brand-600 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>《微电影》1 份（5-10分钟）</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>电影级叙事剪辑</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>婚礼全程视频 1 份</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="#contact" class="block text-center bg-brand-500 text-white hover:bg-brand-600 py-3 rounded-sm transition-all duration-300 font-medium">
+                                咨询详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- D 双机位创作档 -->
+                    <div class="bg-gradient-to-b from-brand-800 to-brand-900 text-white rounded-sm shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-brand-900 text-xs px-4 py-1 rounded-sm font-semibold">
+                            旗舰尊享
+                        </div>
+                        <div class="p-6 border-b border-white/10">
+                            <p class="text-brand-300 text-sm font-medium mb-2">D 套餐</p>
+                            <h4 class="font-serif text-xl font-semibold mb-4">双机位创作档</h4>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl font-bold text-gold">¥3500</span>
+                                <span class="text-brand-300 text-sm">/场</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1">
+                            <p class="text-brand-200 mb-4 font-medium">创始人 + 资深摄像师 双机位</p>
+                            <ul class="space-y-3 text-brand-200 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-gold mt-1"></i>
+                                    <span>先导片 1 份（1-2分钟）</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-gold mt-1"></i>
+                                    <span>《微电影》1 份（7-15分钟）</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-gold mt-1"></i>
+                                    <span>专业调色师全程调色</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-gold mt-1"></i>
+                                    <span>婚礼全程视频 1 份</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa fa-check text-gold mt-1"></i>
+                                    <span>工业级制作标准</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="#contact" class="block text-center bg-gold text-brand-900 hover:bg-yellow-500 py-3 rounded-sm transition-all duration-300 font-semibold">
+                                预约尊享
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 摄影跟拍系列 -->
+            <div class="mb-16">
+                <h3 class="font-serif text-2xl font-semibold text-brand-800 text-center mb-10 flex items-center justify-center gap-4">
+                    <span class="h-px w-16 bg-brand-300"></span>
+                    摄影跟拍系列 · 照片
+                    <span class="h-px w-16 bg-brand-300"></span>
+                </h3>
+                
+                <div class="max-w-md mx-auto">
+                    <div class="bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow duration-300 border border-brand-100">
+                        <div class="p-6 border-b border-brand-100 flex justify-between items-center">
+                            <div>
+                                <p class="text-brand-400 text-sm font-medium mb-2">精品摄影档</p>
+                                <h4 class="font-serif text-xl font-semibold text-brand-800">首席摄影师全程跟拍</h4>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-3xl font-bold text-brand-600">¥1480</span>
+                                <span class="text-brand-500 text-sm">/场</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-brand-700 mb-5 font-medium">首席摄影师 1 名</p>
+                            <div class="grid grid-cols-2 gap-4 text-brand-600 text-sm">
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>500+ 张高清底片全送</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>精修照片 50 张</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>婚礼 9 张预告</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i class="fa fa-check text-brand-500 mt-1"></i>
+                                    <span>含预告精修</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 增值服务 -->
+            <div class="max-w-2xl mx-auto bg-brand-50 rounded-sm p-8 border border-brand-100">
+                <h4 class="font-serif text-xl font-semibold text-brand-800 mb-6 text-center">增值服务</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-brand-700">
+                    <div class="flex items-center justify-between">
+                        <span>大疆无人机拍摄方案</span>
+                        <span class="font-semibold text-brand-600">+400元</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>个性化拍摄方案定制</span>
+                        <span class="font-semibold text-brand-600">详询客服</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>运动相机拍摄方案</span>
+                        <span class="font-semibold text-brand-600">详询客服</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>多平台分享格式适配</span>
+                        <span class="font-semibold text-brand-600">免费提供</span>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-brand-200 text-sm text-brand-500 space-y-2">
+                    <p>• 确认档期以定金为准，收取总费用的40%作为定金</p>
+                    <p>• 婚礼拍摄余款需在拍摄结束当日结清</p>
+                    <p>• 交片时长为25个工作日，旺季顺延7天左右</p>
+                    <p>• 此价格为昆明主城区，出城费另议</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队介绍 -->
+    <section id="team" class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-brand-500 tracking-[0.2em] uppercase text-sm mb-4 font-medium">OUR TEAM</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold text-brand-800">主创团队</h2>
+                <p class="text-brand-600 mt-4 max-w-xl mx-auto">每一位成员都拥有数百场婚礼拍摄经验，用专业与热爱记录你的幸福</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- 创始人 -->
+                <div class="text-center group">
+                    <div class="relative mb-6 overflow-hidden rounded-sm mx-auto w-64 h-80">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="创始人" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h4 class="font-serif text-xl font-semibold text-brand-800 mb-1">阿屿</h4>
+                    <p class="text-brand-500 text-sm mb-3">创始人 / 首席摄像师</p>
+                    <p class="text-brand-600 text-sm leading-relaxed max-w-sm mx-auto">
+                        6年婚礼影像从业经验，拍摄超过300场婚礼。擅长电影感叙事拍摄，
+                        作品曾多次获得国内婚礼影像奖项。坚信好的婚礼视频应该有温度、有故事、有情绪。
+                    </p>
+                </div>
+                
+                <!-- 资深摄像师 -->
+                <div class="text-center group">
+                    <div class="relative mb-6 overflow-hidden rounded-sm mx-auto w-64 h-80">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="资深摄像师" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h4 class="font-serif text-xl font-semibold text-brand-800 mb-1">老陈</h4>
+                    <p class="text-brand-500 text-sm mb-3">资深摄像师 / 后期总监</p>
+                    <p class="text-brand-600 text-sm leading-relaxed max-w-sm mx-auto">
+                        4年专业摄像经验，精通各类电影级调色技法。对画面光影有极致追求，
+                        擅长捕捉婚礼上的动人细节，每一部作品都经得起反复回味。
+                    </p>
+                </div>
+                
+                <!-- 首席摄影师 -->
+                <div class="text-center group">
+                    <div class="relative mb-6 overflow-hidden rounded-sm mx-auto w-64 h-80">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="首席摄影师" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <h4 class="font-serif text-xl font-semibold text-brand-800 mb-1">小瞬</h4>
+                    <p class="text-brand-500 text-sm mb-3">首席摄影师</p>
+                    <p class="text-brand-600 text-sm leading-relaxed max-w-sm mx-auto">
+                        纪实风格婚礼摄影师，擅长用光影刻画情绪。不喜欢刻意摆拍，
+                        专注于记录真实自然的瞬间，让照片拥有穿越时光的力量。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section class="py-24 bg-warm-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-brand-500 tracking-[0.2em] uppercase text-sm mb-4 font-medium">PROCESS</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold text-brand-800">服务流程</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center relative">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-brand-100 text-brand-500 flex items-center justify-center text-xl font-semibold">
+                        01
+                    </div>
+                    <h4 class="font-serif text-lg font-semibold text-brand-800 mb-2">咨询沟通</h4>
+                    <p class="text-brand-600 text-sm leading-relaxed">
+                        了解您的婚期、场地与需求，确定拍摄套餐，解答您的所有疑问
+                    </p>
+                </div>
+                
+                <div class="text-center relative">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-brand-100 text-brand-500 flex items-center justify-center text-xl font-semibold">
+                        02
+                    </div>
+                    <h4 class="font-serif text-lg font-semibold text-brand-800 mb-2">预订档期</h4>
+                    <p class="text-brand-600 text-sm leading-relaxed">
+                        支付40%定金锁定档期，建立专属服务群，开始拍摄筹备
+                    </p>
+                </div>
+                
+                <div class="text-center relative">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-brand-100 text-brand-500 flex items-center justify-center text-xl font-semibold">
+                        03
+                    </div>
+                    <h4 class="font-serif text-lg font-semibold text-brand-800 mb-2">拍摄服务</h4>
+                    <p class="text-brand-600 text-sm leading-relaxed">
+                        婚礼当天全程专业拍摄，用镜头记录每一个珍贵瞬间
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-brand-100 text-brand-500 flex items-center justify-center text-xl font-semibold">
+                        04
+                    </div>
+                    <h4 class="font-serif text-lg font-semibold text-brand-800 mb-2">交付成品</h4>
+                    <p class="text-brand-600 text-sm leading-relaxed">
+                        25个工作日内完成后期制作，交付高清成品，珍藏一生
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <p class="text-brand-500 tracking-[0.2em] uppercase text-sm mb-4 font-medium">ABOUT US</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-semibold text-brand-800 mb-6">
+                        关于瞬屿电影
+                    </h2>
+                    <div class="space-y-5 text-brand-700 leading-loose font-light">
+                        <p>
+                            瞬屿电影工作室成立于2019年，是昆明本土专注于高端婚礼影像的创作团队。
+                            我们的名字取自"瞬间"与"岛屿"——每一个爱情瞬间，都是一座值得珍藏的岛屿。
+                        </p>
+                        <p>
+                            我们不做流水线式的婚礼记录，而是将每一场婚礼当作一部独立电影来创作。
+                            从前期沟通、拍摄执行到后期剪辑，每一个环节都精益求精。
+                            我们相信，好的婚礼影像不应该只是好看，更应该有温度、有情绪、有故事。
+                        </p>
+                        <p>
+                            成立至今，我们已为超过500对新人记录下幸福时刻。
+                            未来，我们依然会带着热爱与匠心，继续做爱情的记录者。
+                        </p>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center gap-10">
+                        <div>
+                            <p class="text-3xl font-bold text-brand-500 font-serif">500+</p>
+                            <p class="text-brand-600 text-sm">服务新人</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-brand-500 font-serif">6年</p>
+                            <p class="text-brand-600 text-sm">行业经验</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-brand-500 font-serif">100%</p>
+                            <p class="text-brand-600 text-sm">好评率</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2 relative">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" 
+                         alt="关于我们" 
+                         class="w-full h-96 object-cover rounded-sm shadow-lg">
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 border-2 border-brand-300 rounded-sm -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价 -->
+    <section class="py-24 bg-brand-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-brand-500 tracking-[0.2em] uppercase text-sm mb-4 font-medium">TESTIMONIALS</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold text-brand-800">新人说</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-sm shadow-sm">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="text-brand-700 leading-relaxed mb-6 italic">
+                        "看完微电影直接哭了，完全超出预期！老师特别专业，
+                        把我们当天的情绪都捕捉到了，每看一次都很感动，真的太感谢了！"
+                    </p>
+                    <p class="text-brand-800 font-medium">— 李小姐 & 王先生</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="text-brand-700 leading-relaxed mb-6 italic">
+                        "双机位真的太值了！角度丰富，画面质感超棒，
+                        剪辑节奏也特别好，朋友们都问我在哪里拍的，已经推荐给好几个闺蜜了。"
+                    </p>
+                    <p class="text-brand-800 font-medium">— 张女士 & 刘先生</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-sm shadow-sm">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="text-brand-700 leading-relaxed mb-6 italic">
+                        "团队非常专业敬业，当天拍摄很辛苦但一直很认真。
+                        照片精修也特别自然，不是千篇一律的网红脸，就是我们最美的样子。"
+                    </p>
+                    <p class="text-brand-800 font-medium">— 陈小姐 & 周先生</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系预约 -->
+    <section id="contact" class="py-24 bg-brand-900 text-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <p class="text-brand-300 tracking-[0.2em] uppercase text-sm mb-4 font-medium">CONTACT US</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-6">预约咨询</h2>
+                    <p class="text-brand-200 leading-relaxed mb-10 max-w-md">
+                        感谢您关注瞬屿电影。如果您想了解更多套餐详情、档期查询或定制方案，
+                        欢迎通过以下方式联系我们，我们会尽快回复您。
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-brand-800 flex items-center justify-center text-brand-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-brand-400 text-sm">微信咨询</p>
+                                <p class="font-medium">SHUNYU-FILM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-brand-800 flex items-center justify-center text-brand-300">
+                                <i class="fa fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-brand-400 text-sm">联系电话</p>
+                                <p class="font-medium">138-XXXX-XXXX</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-brand-800 flex items-center justify-center text-brand-300">
+                                <i class="fa fa-map-marker text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-brand-400 text-sm">工作室地址</p>
+                                <p class="font-medium">昆明市 · 瞬屿电影工作室</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/5 backdrop-blur-sm rounded-sm p-8 border border-white/10">
+                    <h4 class="font-serif text-xl font-semibold mb-6">发送咨询</h4>
+                    <form class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-brand-300 text-sm mb-2">您的姓名</label>
+                                <input type="text" 
+                                       class="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white placeholder-brand-400 focus:outline-none focus:border-brand-400 transition-colors"
+                                       placeholder="请输入姓名">
+                            </div>
+                            <div>
+                                <label class="block text-brand-300 text-sm mb-2">联系电话</label>
+                                <input type="tel" 
+                                       class="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white placeholder-brand-400 focus:outline-none focus:border-brand-400 transition-colors"
+                                       placeholder="请输入电话">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-brand-300 text-sm mb-2">婚礼日期</label>
+                            <input type="date" 
+                                   class="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-brand-400 transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-brand-300 text-sm mb-2">意向套餐</label>
+                            <select class="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-brand-400 transition-colors">
+                                <option value="" class="text-brand-900">请选择套餐</option>
+                                <option value="a" class="text-brand-900">A 经典记录档 ¥1380</option>
+                                <option value="b" class="text-brand-900">B 精致记录档 ¥1680</option>
+                                <option value="c" class="text-brand-900">C 创始人创作档 ¥1980</option>
+                                <option value="d" class="text-brand-900">D 双机位创作档 ¥3500</option>
+                                <option value="photo" class="text-brand-900">精品摄影档 ¥1480</option>
+                                <option value="custom" class="text-brand-900">定制方案</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-brand-300 text-sm mb-2">留言内容</label>
+                            <textarea rows="3" 
+                                      class="w-full bg-transparent border border-white/20 rounded-sm px-4 py-3 text-white placeholder-brand-400 focus:outline-none focus:border-brand-400 transition-colors resize-none"
+                                      placeholder="请简单描述您的需求"></textarea>
+                        </div>
+                        
+                        <button type="button" 
+                                class="w-full bg-brand-500 hover:bg-brand-600 text-white py-4 rounded-sm transition-all duration-300 font-medium tracking-wide">
+                            提交咨询
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-brand-950 py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <span class="font-display text-xl font-semibold tracking-wider text-brand-300">SHUNYU FILM</span>
+                    <span class="text-brand-500">|</span>
+                    <span class="text-brand-400">瞬屿电影工作室</span>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-brand-400 hover:text-brand-300 transition-colors">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-brand-400 hover:text-brand-300 transition-colors">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-brand-400 hover:text-brand-300 transition-colors">
+                        <i class="fa fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-brand-400 hover:text-brand-300 transition-colors">
+                        <i class="fa fa-video-camera text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-10 pt-8 border-t border-white/5 text-center text-brand-500 text-sm">
+                <p>© 2025 瞬屿婚礼电影工作室 版权所有 | 用专业记录爱情，让回忆温暖一生</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-brand-500 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-brand-600 z-40">
+        <i class="fa fa-angle-up text-xl"></i>
+    </button>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-warm-50/95', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+                
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('bg-warm-50/95', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+                
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuBtn.innerHTML = '<i class="fa fa-times"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+            }
+        });
+        
+        // 点击菜单项关闭移动端菜单
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+                menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+            });
+        });
+        
+        // 返回顶部
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 滚动渐入动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section > div').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
